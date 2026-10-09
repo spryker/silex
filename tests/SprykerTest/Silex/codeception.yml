@@ -1,0 +1,21 @@
+namespace: SprykerTest\Silex
+
+paths:
+    tests: .
+    data: ../../_data
+    support: _support
+    output: ../../_output
+
+coverage:
+    enabled: true
+    remote: false
+    whitelist: { include: ['../../../src/*'] }
+
+suites:
+    Stub:
+        path: .
+        actor: SilexTester
+        modules:
+            enabled:
+                - Asserts
+                - \SprykerTest\Shared\Testify\Helper\Environment

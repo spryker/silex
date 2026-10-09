@@ -1,0 +1,15 @@
+parameters:
+    level: 8
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # The stub traits exist only so that `use Silex\Application\<X>Trait;` keeps resolving in
+        # `\Spryker\Shared\Kernel\Communication\ApplicationProxy`. Nothing in this module uses them.
+        -
+            identifier: trait.unused
+        # `ServiceProviderInterface::register()/boot()` deliberately declare no return type, exactly
+        # as the removed silexphp interface did. Declaring one would force all 107 implementers
+        # across the repo to declare it too - a breaking change - and documenting one via `@return`
+        # makes `ExternalMethodExtensionReturnTypeRule` demand a native return type from every one
+        # of them. Matched by message rather than path: the per-module CI scan runs PHPStan from a
+        # different working directory, so a relative `path:` does not match there.
+        - '#^Method Silex\\ServiceProviderInterface::(register|boot)\(\) has no return type specified\.$#'

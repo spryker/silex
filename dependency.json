@@ -1,5 +1,6 @@
 {
     "include": {
-        "spryker/silexphp": "Required to get the dependency installed into projects."
+        "spryker/container": "Provides the `\\Pimple` base class the `Silex\\Application` stub extends.",
+        "spryker/symfony": "Provides the Symfony ControllerResolver and RedirectableUrlMatcher the stubs extend."
     }
 }
