@@ -12,6 +12,11 @@ use Silex\Exception\SilexRemovedException;
 /**
  * Stub replacement for the removed `Silex\ControllerCollection`.
  *
+ * The `@method` block declares the routing verbs this repository still calls. They reach __call()
+ * and throw; the declarations only keep the callers type-checking.
+ *
+ * @method \Silex\Controller match(string $pattern, mixed $to = null)
+ *
  * @deprecated Use {@link \Spryker\Yves\Router\Plugin\RouteProvider\AbstractRouteProviderPlugin} instead.
  */
 class ControllerCollection implements SprykerStubInterface

@@ -6,6 +6,10 @@ parameters:
         # `\Spryker\Shared\Kernel\Communication\ApplicationProxy`. Nothing in this module uses them.
         -
             identifier: trait.unused
+        # The variadic stub constructors accept every original signature and throw before they
+        # could use a single argument.
+        -
+            identifier: constructor.unusedParameter
         # `ServiceProviderInterface::register()/boot()` deliberately declare no return type, exactly
         # as the removed silexphp interface did. Declaring one would force all 107 implementers
         # across the repo to declare it too - a breaking change - and documenting one via `@return`

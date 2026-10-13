@@ -24,12 +24,21 @@ use Symfony\Component\HttpKernel\Controller\ControllerResolver as BaseController
 class ControllerResolver extends BaseControllerResolver implements SprykerStubInterface
 {
     /**
-     * Declared without parameters on purpose: PHP silently ignores extra arguments passed to a
-     * userland function, so every original call signature still reaches this body and throws.
+     * Read by the `*FragmentControllerResolver` subclasses, as on the removed silexphp class.
+     *
+     * @var \Silex\Application
+     */
+    protected $app;
+
+    /**
+     * Variadic on purpose: every original call signature, `new ControllerResolver($app)` included,
+     * type-checks and still reaches this body and throws.
+     *
+     * @param mixed ...$arguments
      *
      * @throws \Silex\Exception\SilexRemovedException
      */
-    public function __construct()
+    public function __construct(mixed ...$arguments)
     {
         throw SilexRemovedException::forMember(static::class);
     }

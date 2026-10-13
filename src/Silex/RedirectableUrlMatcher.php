@@ -21,12 +21,14 @@ use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher as BaseRedirectable
 class RedirectableUrlMatcher extends BaseRedirectableUrlMatcher implements SprykerStubInterface
 {
     /**
-     * Declared without parameters on purpose: PHP silently ignores extra arguments passed to a
-     * userland function, so every original call signature still reaches this body and throws.
+     * Variadic on purpose: every original call signature, `new RedirectableUrlMatcher($routes,
+     * $context)` included, type-checks and still reaches this body and throws.
+     *
+     * @param mixed ...$arguments
      *
      * @throws \Silex\Exception\SilexRemovedException
      */
-    public function __construct()
+    public function __construct(mixed ...$arguments)
     {
         throw SilexRemovedException::forMember(static::class);
     }

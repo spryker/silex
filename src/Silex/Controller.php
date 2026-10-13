@@ -21,6 +21,7 @@ use Silex\Exception\SilexRemovedException;
  * route providers. Runtime behaviour is unchanged - `__call()` still throws.
  *
  * @method \Silex\Controller assert(string $variable, string $regexp)
+ * @method \Silex\Controller bind(string $routeName)
  * @method \Silex\Controller value(string $variable, mixed $default)
  * @method \Silex\Controller convert(string $variable, mixed $callback)
  * @method \Silex\Controller method(string $method)

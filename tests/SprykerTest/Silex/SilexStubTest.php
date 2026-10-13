@@ -24,6 +24,7 @@ use Silex\RedirectableUrlMatcher;
 use Silex\ServiceProviderInterface;
 use Silex\SprykerStubInterface;
 use Spryker\Service\Container\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Auto-generated group annotations
@@ -135,7 +136,7 @@ class SilexStubTest extends Unit
             ['match'], ['post'], ['put'], ['delete'], ['options'], ['patch'],
             ['on'], ['before'], ['after'], ['finish'], ['abort'], ['error'],
             ['view'], ['flush'], ['redirect'], ['stream'], ['escape'], ['json'],
-            ['sendFile'], ['mount'], ['run'], ['handle'], ['terminate'],
+            ['sendFile'], ['mount'], ['run'], ['terminate'],
         ];
     }
 
@@ -153,6 +154,21 @@ class SilexStubTest extends Unit
 
         // Act
         (new Application())->$method();
+    }
+
+    /**
+     * The original class implemented `HttpKernelInterface`, so `handle()` is declared rather than
+     * left to `__call()`, and takes the interface's arguments.
+     *
+     * @return void
+     */
+    public function testApplicationHandleThrows(): void
+    {
+        // Assert
+        $this->expectException(SilexRemovedException::class);
+
+        // Act
+        (new Application())->handle(Request::create('/'));
     }
 
     public function testExceptionMessageNamesTheMemberAndTheMigrationPath(): void
@@ -265,10 +281,10 @@ class SilexStubTest extends Unit
     }
 
     /**
-     * The stubs declare no constructor parameters, but the original classes took some and existing
-     * call sites still pass them (`new RedirectableUrlMatcher($routes, $context)` in
-     * `\Spryker\Shared\Application\Business\Routing\SilexRouter`). PHP ignores extra arguments to
-     * a userland function, so those calls must still reach the throw rather than fail differently.
+     * The original classes took constructor arguments and existing call sites still pass them
+     * (`new RedirectableUrlMatcher($routes, $context)` in
+     * `\Spryker\Shared\Application\Business\Routing\SilexRouter`). Those calls must still reach
+     * the throw rather than fail differently.
      *
      * @dataProvider nonConstructableStubProvider
      *
